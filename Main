@@ -1,0 +1,45 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        operationBaseExample("sum", 10,5);
+        operationBaseExample("multiply", 10,5);
+        operationBaseExample("protectedMax", 10,5);
+
+    }
+
+    private static void operationBaseExample(String methodName, Integer value1, Integer value2){
+        final Operations operations = new Operations();
+        final Class operationsClass = operations.getClass();
+
+        if(null != operationsClass){
+            try {
+                if("sum".equals(methodName)){
+                    final Method method = operationsClass.getDeclaredMethod("sum", Integer.class,Integer.class);
+                    final Integer sumValue = (Integer) method.invoke(operations, value1, value2);
+                    System.out.println("sum of " + sumValue);
+                }else if("multiply".equals(methodName)){
+                    final Method method = operationsClass.getDeclaredMethod("multiply", Integer.class,Integer.class);
+                    final Integer multiplyValue = (Integer) method.invoke(operations, value1, value2);
+                    System.out.println("multiply of " + value1 + " and " + value2 + " is: " + multiplyValue);
+                }else if("protectedMax".equals(methodName)){
+                    final Method method = operationsClass.getDeclaredMethod("protectedMax", Integer.class,Integer.class);
+                    final Integer maxValue = (Integer) method.invoke(operations, value1, value2);
+                    System.out.println("protectedMax of " + value1 + " and " + value2 + " is: " + maxValue);
+                }
+
+            }catch (InvocationTargetException e){
+
+            }catch (IllegalAccessException e){
+
+            }catch (NoSuchMethodException e){
+
+            }
+        }
+    }
+
+
+}
