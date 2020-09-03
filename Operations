@@ -1,0 +1,14 @@
+public class Operations {
+
+    public Integer sum(Integer a, Integer b) {
+        return a + b;
+    }
+
+    public Integer multiply(Integer a, Integer b) {
+        return a * b;
+    }
+
+    protected Integer protectedMax(Integer a, Integer b) {
+        return a > b ? a : b;
+    }
+}
